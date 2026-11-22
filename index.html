@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Programming Exam Preparation</title>
+<style>
+:root{--bg:#eef2f1;--card:#fff;--ink:#14262b;--mute:#5c6f73;--acc:#15665a;--accl:#d9ede9;--bad:#b4381c;--badl:#f8e1da;--line:#d3dcdb;--hd:#14262b;--accfg:#fff;--okbg:#dff3e6;--okbd:#2e8b57;--opt:#fff;--exbg:#f4f7f6}
+[data-theme=dark]{color-scheme:dark;--bg:#0f1719;--card:#182326;--ink:#e8f0ef;--mute:#9db2b5;--acc:#4fc3b0;--accl:#173b36;--bad:#ff9b80;--badl:#3b2119;--line:#2e3f42;--hd:#0a1113;--accfg:#04201b;--okbg:#14351f;--okbd:#4bbf7a;--opt:#1d2a2d;--exbg:#1f2e31}
+body,.card,.opt,button,header,.nav button,.ex,.ring span,pre{transition:background-color .25s,color .25s,border-color .25s}
+#th{background:none;border:1px solid #58757a;color:#fff;border-radius:6px;padding:6px 12px;cursor:pointer;font:inherit}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,"Segoe UI",sans-serif}
+h1,h2,h3{font-family:Georgia,"Times New Roman",serif;margin:0 0 .4em;letter-spacing:-.01em}
+header{background:var(--hd);color:#fff;display:flex;gap:6px;align-items:center;padding:10px 20px;flex-wrap:wrap}
+header b{font:700 18px Georgia,serif;margin-right:auto}
+nav button{background:none;border:0;color:#cfe0dd;padding:8px 14px;font:inherit;cursor:pointer;border-radius:6px}
+nav button:hover,nav button.on{background:#27434a;color:#fff}
+main{max-width:960px;margin:0 auto;padding:24px 16px 60px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px}
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.stat{font:700 30px Georgia,serif}.mute{color:var(--mute);font-size:14px}
+button.p,button.s{font:inherit;padding:9px 18px;border-radius:7px;cursor:pointer;border:1px solid var(--acc)}
+button.p{background:var(--acc);color:var(--accfg)}button.s{background:var(--card);color:var(--acc)}
+button:disabled{opacity:.4;cursor:default}button:focus-visible{outline:3px solid #f2b441}
+.bar{height:8px;background:var(--line);border-radius:4px;overflow:hidden}.bar i{display:block;height:100%;background:var(--acc);transition:width .3s}
+.tag{font-size:12px;background:var(--accl);color:var(--acc);padding:2px 8px;border-radius:10px;margin-right:6px}
+pre{background:#10201f;color:#dff3ee;padding:12px 14px;border-radius:8px;overflow:auto;font:14px/1.5 Consolas,Menlo,monospace;margin:10px 0}
+.opt{display:block;width:100%;text-align:left;font:inherit;color:var(--ink);background:var(--opt);border:1.5px solid var(--line);border-radius:8px;padding:10px 14px;margin:8px 0;cursor:pointer;transition:.15s}
+.opt:hover{border-color:var(--acc)}.opt.sel{border-color:var(--acc);background:var(--accl)}
+.opt.ok{border-color:var(--okbd);background:var(--okbg)}.opt.no{border-color:var(--bad);background:var(--badl)}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:14px}.sp{margin-left:auto}
+.nav{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.nav button{width:34px;height:34px;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:6px;cursor:pointer;font:inherit;font-size:13px}
+.nav .done{background:var(--accl);border-color:var(--acc)}.nav .cur{outline:2px solid var(--ink)}
+.ring{width:130px;height:130px;border-radius:50%;display:grid;place-items:center;font:700 26px Georgia,serif}
+.ring span{background:var(--card);width:96px;height:96px;border-radius:50%;display:grid;place-items:center}
+.ex{background:var(--exbg);border-left:3px solid var(--acc);padding:8px 12px;margin-top:8px;font-size:15px}
+.rq{margin-top:14px}.rq.w{border-left:4px solid var(--bad)}.rq.r{border-left:4px solid #2e8b57}.rq.u{border-left:4px solid #999}
+@media(max-width:600px){main{padding:14px 10px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+:root{--cb:#f1f5f4;--cbh:#e1eae8;--cf:#14262b;--hk:#7b2d8e;--hs:#0b6b3a;--hc:#566a6e;--hn:#9a3d00;--ho:#b4381c;--hp:#0a5ea8}
+[data-theme=dark]{--cb:#0f1a1c;--cbh:#1b2a2d;--cf:#e8f0ef;--hk:#d9a8ff;--hs:#8fdcaa;--hc:#92a8ab;--hn:#ffb27a;--ho:#ff9b80;--hp:#7cc4ff}
+.card{min-width:0}
+.cb{margin:12px 0;border:1px solid var(--line);border-radius:8px;background:var(--cb);overflow:hidden;max-width:100%}
+.cbh{display:flex;justify-content:space-between;align-items:center;background:var(--cbh);color:var(--mute);font:600 12px system-ui,sans-serif;padding:4px 8px 4px 12px}
+.cpy{font:600 12px system-ui,sans-serif;background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:3px 10px;cursor:pointer}
+.cb pre{margin:0;padding:12px 14px;overflow-x:auto;white-space:pre;tab-size:4;-webkit-overflow-scrolling:touch;background:none;color:var(--cf);font:14px/1.55 Consolas,Menlo,"Courier New",monospace;border-radius:0}
+.cb code{font:inherit;background:none;color:inherit}
+code.ic{font:.92em Consolas,Menlo,"Courier New",monospace;background:var(--cb);color:var(--cf);border:1px solid var(--line);border-radius:4px;padding:0 5px;white-space:pre-wrap;overflow-wrap:anywhere}
+.hk{color:var(--hk);font-weight:600}.hs{color:var(--hs)}.hc{color:var(--hc);font-style:italic}.hn{color:var(--hn)}.ho{color:var(--ho)}.hp{color:var(--hp)}
+@media(max-width:600px){.cb pre{font-size:12.5px;padding:10px}}
+</style></head><body>
+<header><b>Programming Exam Preparation</b><nav><button data-v="home">Dashboard</button><button data-v="tests">Practice tests</button><button data-v="prog">Progress</button></nav><button id="th" aria-label="Toggle light/dark mode"></button></header>
+<main id="app"></main>
+<script>
+// ---------- QUESTION BANK ----------
+// Concept questions: q | correct | wrong1 | wrong2 | wrong3 | topic | difficulty | explanation
+const C=`Which function constructs an element in place at the end of a vector?|emplace_back()|push_back()|append()|insert()|Vectors|M|emplace_back builds the element directly in the vector's storage; push_back copies/moves an existing object.
+Which method adds an element to the end of a vector?|push_back()|add()|append()|emplace()|Vectors|E|push_back appends a value at the end.
+Which function checks if a vector is empty?|empty()|size()|check()|is_null()|Vectors|E|empty() returns true when size() is 0.
+What does clear() do for a std::vector?|Removes all elements but keeps the allocated capacity|Deallocates all memory|Resets the vector to its initial state|Shrinks capacity to zero|Vectors|M|clear() destroys elements; capacity normally stays unchanged.
+Which function inserts an element at a specified position in a vector?|insert()|push_back()|append()|add()|Vectors|E|insert(iterator, value) places the value at the given position.
+Which member function returns a reference to the first element of a vector?|front()|begin()|first()|head()|Vectors|E|front() returns the first element; begin() returns an iterator.
+What does back() return for a std::string?|The last character|The first character|An iterator to the end|A null character|Strings|E|back() returns a reference to the last character.
+What does std::string::find_first_of do?|Finds the first occurrence of any character from a given set|Finds the first occurrence of a substring only|Counts occurrences of a character|Finds the last occurrence of a character|Strings|H|It returns the index of the first character that matches any character in the set.
+What is the purpose of c_str() in std::string?|To get a C-style null-terminated string|To find a substring|To concatenate strings|To convert to uppercase|Strings|E|c_str() returns const char* usable by C functions.
+Which std::string function removes a substring?|erase()|delete()|remove()|cut()|Strings|E|string::erase(pos, len) removes characters.
+Which function copies one C-style string into another?|strcpy()|strcat()|strcmp()|strlen()|C-strings|E|strcpy copies the source into the destination buffer.
+What does strcmp(a, b) return when both strings are equal?|0|1|-1|true|C-strings|E|strcmp returns 0 for equal strings, negative/positive otherwise.
+Which function finds a substring in a C-string?|strstr()|strchr()|strfind()|strcoll()|C-strings|M|strstr returns a pointer to the first occurrence of the substring.
+What does sizeof("Hello") evaluate to?|6|5|4|undefined|C-strings|H|The literal has 5 characters plus the terminating '\\0', so 6 bytes.
+How do you declare a struct with a string member called name?|struct Person { string name; };|struct Person { name: string; };|Person struct { string name; };|struct Person ( string name );|Structs|E|Members are declared as type then name, inside braces, ending with a semicolon.
+What is the default access level of members of a struct in C++?|Public|Private|Protected|Internal|Structs|M|Struct members are public by default; class members are private.
+Which operator accesses a member of a struct through a pointer?|->|.|::|&|Structs|E|p->m is shorthand for (*p).m.
+Which operator accesses a member of a struct variable (not a pointer)?|. (dot)|->|::|*|Structs|E|The dot operator is used on objects directly.
+Why may a struct not occupy consecutive bytes in memory?|Member alignment can create padding between members|Members are stored in reverse order|Structs are stored on disk|All members are pointers|Structs|H|Compilers insert padding so members meet alignment requirements.
+What does ptr + n do in pointer arithmetic?|Moves the pointer by n elements of the pointed type|Moves the pointer by n bytes|Adds n to the pointed value|Dereferences the pointer and adds n|Pointers|M|Arithmetic scales by sizeof(*ptr).
+What is a pointer?|A variable that holds a memory address|A constant value|A function that returns an address|A special kind of array|Pointers|E|A pointer stores the address of another object.
+What is a pointer to pointer?|A pointer that holds the address of another pointer|A pointer to a function|A pointer to an array|A pointer holding two addresses|Pointers|M|int **pp stores the address of an int* variable.
+Which declaration creates a constant pointer to an int (the pointer cannot be reseated)?|int* const ptr;|const int* ptr;|int const* ptr;|const int& ptr;|Pointers|H|const after the * makes the pointer itself constant.
+Which declaration creates an array of 4 pointers to char?|char *a[4];|char (*a)[4];|char &a[4];|char a[4];|Pointers|H|[] binds tighter than *, so char *a[4] is an array of pointers.
+Which is the correct syntax to allocate dynamic memory for an int in C++?|int* ptr = new int;|int* ptr = allocate(int);|int ptr = new int;|int* ptr = new();|Dynamic memory|E|new int returns an int*.
+How do you free memory allocated with int *arr = new int[5];?|delete[] arr;|delete arr;|delete arr[5];|free(arr);|Dynamic memory|M|Memory from new[] must be released with delete[].
+How do you deallocate memory for a single dynamically allocated struct pointed to by ptr (allocated with new)?|delete ptr;|free(ptr);|clear(ptr);|ptr = nullptr;|Dynamic memory|M|new pairs with delete; free pairs with malloc.
+How do you create a pointer to a dynamically allocated array of 10 Car structs?|Car* cars = new Car[10];|Car cars[10] = new Car();|Car* cars[10] = new Car;|Car cars = new Car[10];|Dynamic memory|M|new Car[10] returns a Car* to the first element.
+What is function overloading?|Several functions with the same name but different parameters|A function that calls itself|A function without a return type|A function with too many parameters|Functions|E|Overloads share a name and differ in parameter lists.
+Which line is a correct function prototype?|int max(int, int);|int max(int a, int b) {}|max(int a, int b);|int max(a, b);|Functions|E|A prototype gives return type, name and parameter types, ending in ;.
+Which statement about inline functions is true?|They can reduce function call overhead|They are always faster|They cannot take parameters|They cannot be overloaded|Functions|M|inline is a hint; it may remove call overhead but guarantees nothing.
+How can a C++ function accept a variable number of arguments?|Use an ellipsis (...) in the parameter list|Use a for loop as an argument|Pass a constant|Declare it void|Functions|H|Ellipsis (variadic) syntax allows any number of extra arguments.
+What does the continue statement do inside a loop?|Skips the rest of the body and goes to the next iteration|Exits the loop|Terminates the program|Repeats the current iteration|Loops|E|continue jumps to the next iteration (running the update step in a for loop).
+What does the break statement do inside a loop?|Immediately exits the loop|Skips to the next iteration|Terminates the program|Pauses the loop|Loops|E|break leaves the innermost loop.
+What does for (;;) { ... } mean?|An infinite loop|The loop never runs|The loop runs once|Compilation error|Loops|M|An omitted condition is treated as true.
+What is the typedef specifier used for?|Giving a new name (alias) to an existing type|Creating a new variable|Allocating memory|Declaring a constant|Types|E|typedef creates a type alias.
+Which expression causes a compilation error?|10.5 % 3|10.5 / 3|10 % 3|10 / 3|Operators|M|The % operator requires integer operands.
+Which condition correctly checks that integer n is even?|n % 2 == 0|n / 2 == 0|n % 2 == 1|n == 2|Operators|E|An even number has remainder 0 when divided by 2.
+What is the output of: int x = 3.99; cout << x;|3|4|3.99|Compilation error|Types|M|Assigning a double to an int truncates toward zero (a narrowing conversion, not an error with = ).
+Which of these lines is a correct way to get a whole line with spaces into a std::string s?|getline(cin, s);|cin >> s;|scanf(s);|read(s);|Strings|M|cin >> stops at whitespace; getline reads a full line.
+Which statement is true about a const pointer declared as int * const p = &x;?|*p = 5; is allowed but p = &y; is an error|*p = 5; is an error|p = &y; is allowed|Both are allowed|Pointers|H|The pointer is constant, the pointed-to int is not.`.split("\n").map(l=>{const p=l.split("|");return{t:p[0],o:p.slice(1,5),topic:p[5],diff:p[6],ex:p[7],code:""}});
+function rng(s){return()=>(s=(s*1664525+1013904223)>>>0)/4294967296}
+function shuf(a,r){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(r()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+const N=`What is printed?|int a = 7, b = 2;~cout << a / b << " " << a % b;|3 1|3.5 1|3 3|4 1|Operators|E|Both operands are int: 7/2 = 3 and 7%2 = 1.
+What is printed?|int a = 3, b = 4;~cout << (a > b ? a : b);|4|3|7|1|Operators|E|The conditional operator yields the larger value, 4.
+What is printed?|if (5 > 3 && 2 > 4) cout << "A";~else cout << "B";|B|A|AB|Nothing|Control flow|E|&& needs both sides true; 2 > 4 is false, so the else branch runs.
+What is printed?|int x = 0;~if (x = 5) cout << "yes";~else cout << "no";|yes|no|Compilation error|0|Control flow|H|x = 5 is an assignment whose value 5 is non-zero, so the condition is true (and x becomes 5).
+What is printed?|char c = 'A';~c += 2;~cout << c;|C|A|67|B|Types|M|'A' + 2 is 'C'; c is a char, so a character is printed.
+What is printed?|cout << 10 + 5 * 2 - 4 / 2;|18|28|13|8|Operators|E|* and / bind first: 10 + 10 - 2 = 18.
+What is printed?|int i;~for (i = 0; i < 5; i++) { }~cout << i;|5|4|0|Undefined|Loops|M|i is declared outside the loop and keeps the value that ended the loop: 5.
+What is printed?|for (int i = 1; i <= 10; i++) {~    if (i % 3 == 0) continue;~    if (i > 7) break;~    cout << i;~}|12457|124578|1245|12457810|Loops|H|3 and 6 are skipped by continue; at i = 8 the break ends the loop.
+What is printed?|int s = 0;~for (int i = 1; i <= 4; i++) s += i * i;~cout << s;|30|10|100|20|Loops|M|1 + 4 + 9 + 16 = 30.
+What is printed?|for (int i = 1; i <= 3; i++) {~    for (int j = 1; j <= i; j++) cout << j;~    cout << "-";~}|1-12-123-|123-123-123-|1-2-3-|1-22-333-|Loops|H|The inner loop prints 1..i, then a dash is printed after each inner loop.
+What is printed?|int a[5] = {1, 2, 3};~cout << a[3] + a[4];|0|Garbage values|Compilation error|7|Arrays|H|Elements without an initializer in a partial initializer list are set to 0.
+What is printed?|int a[] = {4, 8, 15, 16, 23};~cout << sizeof(a) / sizeof(a[0]);|5|20|4|6|Arrays|H|Total bytes divided by bytes per element gives the element count.
+What is printed?|int a[3] = {10, 20, 30};~cout << *(a + 1);|20|10|30|The address of a[1]|Pointers|M|a + 1 points to the second element; * reads its value.
+What is printed?|int a[3] = {1, 2, 3};~int *p = a;~p++;~cout << *p + *(p + 1);|5|3|4|6|Pointers|H|After p++, *p is 2 and *(p+1) is 3.
+What is printed?|int a[4] = {1, 2, 3, 4};~for (int i = 3; i >= 0; i -= 2) cout << a[i];|42|31|4321|24|Arrays|M|i takes 3 and 1, printing a[3] then a[1].
+What is printed?|void f(int x) { x = x + 10; }~int main() {~    int a = 1;~    f(a);~    cout << a;~}|1|11|10|Compilation error|Functions|M|Arguments are passed by value; f changes only its own copy.
+What is printed?|void swap2(int *a, int *b) {~    int t = *a; *a = *b; *b = t;~}~int main() {~    int x = 1, y = 2;~    swap2(&x, &y);~    cout << x << y;~}|21|12|11|22|Functions|M|The function exchanges the values through the addresses.
+What is printed?|int f(int n) {~    if (n <= 1) return 1;~    return n * f(n - 1);~}~int main() { cout << f(4); }|24|10|16|12|Functions|H|f(4) = 4*3*2*1 = 24 (the function calls itself).
+What is printed?|void p(int x) { cout << "I"; }~void p(double x) { cout << "D"; }~int main() { p(3); p(3.0); }|ID|II|DD|Compilation error|Functions|H|Overload resolution picks the version matching the argument type.
+What is the purpose of declaring a function prototype before main and defining the function after main?||It lets main call the function before its definition appears|It makes the function run faster|It allocates memory for the function|It makes the function inline|Functions|E|The compiler must know the signature before a call is compiled.
+What is printed?|struct P { int x, y; };~P a = {3, 4};~P b = a;~b.x = 10;~cout << a.x << b.x;|310|1010|33|103|Structs|M|b is an independent copy of a; changing b.x does not affect a.x.
+What is printed?|struct P { int x; int y; };~P arr[2] = {{1, 2}, {3, 4}};~cout << arr[1].y + arr[0].x;|5|6|4|7|Structs|M|arr[1].y is 4 and arr[0].x is 1.
+What is printed?|struct S { int v; };~S s = {8};~S *p = &s;~p->v += 2;~cout << s.v;|10|8|2|Compilation error|Structs|M|p->v accesses the original s through its address.
+What is printed?|struct C {~    int n;~    void inc() { n++; }~};~int main() {~    C c = {5};~    c.inc(); c.inc();~    cout << c.n;~}|7|5|6|Compilation error|Structs|M|Each call to the member function increases n by one.
+What is printed?|int x = 5;~int *p = &x;~*p = *p + 1;~cout << x;|6|5|The address of x|Compilation error|Pointers|E|Writing through *p changes x.
+What is printed?|int x = 3, y = 4;~int *p = &x;~p = &y;~*p = 9;~cout << x << y;|39|99|34|94|Pointers|H|p is re-pointed to y, so only y changes.
+What is printed?|int a = 1, b = 2;~int *p = &a;~int **pp = &p;~*pp = &b;~cout << *p;|2|1|The address of b|Compilation error|Pointers|H|*pp = &b changes p itself so that it points to b.
+What is printed?|int *p = new int;~*p = 12;~cout << *p;~delete p;|12|The address of p|0|Compilation error|Dynamic memory|E|new int gives a valid int that we set to 12.
+What is printed?|int n = 3;~int *a = new int[n];~for (int i = 0; i < n; i++) a[i] = i * 2;~cout << a[2];~delete[] a;|4|2|6|0|Dynamic memory|M|a[2] = 2 * 2 = 4.
+Which fragment causes a memory leak?||int *p = new int; p = nullptr;|int *p = new int; delete p;|int *p = new int[2]; delete[] p;|int x; int *p = &x;|Dynamic memory|H|Overwriting the only pointer to new memory without delete leaves the block unreachable.
+What is the problem with this code?|int *p = new int;~*p = 2;~delete p;~cout << *p;|Undefined behavior: the memory was already freed|It always prints 2|Compilation error|It prints 0|Dynamic memory|H|After delete the pointer dangles; reading through it is undefined.
+What is printed?|string s = "abc";~s += "de";~cout << s.length();|5|3|abcde|Compilation error|Strings|E|Appending gives "abcde", length 5.
+What is printed?|string s = "hello";~s[0] = 'J';~cout << s;|Jello|hello|J|Compilation error|Strings|M|std::string characters can be modified by index.
+What is printed?|string a = "cat", b = "dog";~cout << (a < b);|1|0|true|Compilation error|Strings|H|Strings compare alphabetically; "cat" < "dog" is true, printed as 1.
+What is printed?|string s = "programming";~cout << s.substr(3, 4);|gram|ogra|gra|ramm|Strings|H|substr(3, 4) starts at index 3 and takes 4 characters.
+What is printed?|string s = "a-b-c";~s.erase(1, 2);~cout << s;|a-c|ab-c|a-b|abc|Strings|H|erase(1, 2) removes "-b".
+What is printed?|char s[] = "Hi";~cout << sizeof(s) << strlen(s);|32|22|33|23|C-strings|H|The array holds 'H', 'i' and '\0' (3 bytes); strlen counts 2.
+What is printed?|char a[10] = "dog";~strcat(a, "gy");~cout << a;|doggy|dog|gy|Compilation error|C-strings|M|strcat appends the second string to the first.
+What is printed?|char s[] = "code";~cout << s[1] << *(s + 3);|oe|oc|de|ce|C-strings|M|s[1] is 'o'; *(s+3) is 'e'.
+What is printed?|typedef int num;~num a = 3;~cout << a * 2;|6|32|Compilation error|3|Types|M|num is just another name for int.
+What is printed?|double d = 7 / 2;~cout << d;|3|3.5|4|Compilation error|Types|M|7 / 2 is integer division (3) before it is stored in d.
+What is printed?|cout << (7 > 3) + (2 > 5);|1|2|0|Compilation error|Operators|H|true counts as 1 and false as 0.
+What is printed?|int i = 0;~while (i < 5) {~    i += 2;~    if (i == 4) break;~}~cout << i;|4|5|6|2|Loops|M|i becomes 2, then 4, and the break leaves the loop.
+Which statement causes a compilation error?|const int c = 5;~int d = c;~c = 6;~cout << d;|c = 6;|int d = c;|const int c = 5;|cout << d;|Types|M|A const variable cannot be assigned after initialization.
+What is wrong with this code?|int x = 1;~int *p = x;|An int value is assigned to a pointer; &x is required|Nothing, it is valid|x must be const|p must be created with new|Pointers|M|A pointer must be initialized with an address such as &x.`.split("\n").map(l=>{const p=l.split("|");return{t:p[0],code:p[1].replace(/~/g,"\n"),o:p.slice(2,6),topic:p[6],diff:p[7],ex:p[8]}});
+const N2=`What is printed?|int a = 5, b = 9, c = 7;~int m = a > b ? a : (b > c ? b : c);~cout << m;|9|5|7|1|Control flow|H|a > b is false, so the inner conditional runs; b > c is true, giving 9.
+What is printed?|int x = 6;~int y = (x % 2 == 0) ? x / 2 : x * 3 + 1;~cout << y;|3|19|6|12|Control flow|M|6 is even, so the first branch x / 2 is chosen.
+Which if-else statement is equivalent to: int r = (n > 0) ? 1 : -1;||int r; if (n > 0) r = 1; else r = -1;|int r; if (n > 0) r = -1; else r = 1;|int r = 1; if (n > 0) r = -1;|int r; if (n <= 0) r = 1; else r = -1;|Control flow|M|The value before the colon is used when the condition is true.
+What is printed?|int x = 2;~switch (x) {~    case 1: cout << "A";~    case 2: cout << "B";~    case 3: cout << "C"; break;~    default: cout << "D";~}|BC|B|BCD|ABC|Control flow|H|No break after case 2, so execution falls through into case 3 and stops at its break.
+What is printed?|int d = 7;~switch (d % 4) {~    case 1: cout << "one"; break;~    case 2: cout << "two"; break;~    default: cout << "other";~}|other|one|two|Nothing|Control flow|M|7 % 4 is 3, which matches no case, so default runs.
+In a switch statement, what happens if a case block does not end with break?||Execution continues into the next case block|The program stops with an error|Only the default block runs|The switch restarts from the first case|Control flow|E|Without break, control falls through to the following statements.
+What is printed?|int n = 2, p = 1;~do {~    p *= n;~    n++;~} while (n < 5);~cout << p;|24|6|120|2|Loops|H|The body runs for n = 2, 3, 4: p = 2, 6, 24.
+Which statement correctly distinguishes a do-while loop from a while loop?||A do-while body always runs at least once because the condition is checked after it|A do-while loop can never be infinite|A while loop checks its condition after the body|A do-while loop cannot use break|Loops|E|do-while tests the condition at the end of each iteration.
+What is printed?|int sq(int x) { return x * x; }~int cube(int x) { return x * x * x; }~int main() {~    int (*f)(int) = cube;~    cout << f(3) + sq(2);~}|31|13|36|7|Functions|H|f points to cube: 27, plus sq(2) = 4.
+Which declaration declares fp as a pointer to a function taking an int and returning an int?||int (*fp)(int);|int *fp(int);|int fp(*int);|(int*) fp(int);|Functions|H|The parentheses around *fp make it a pointer to a function rather than a function returning int*.
+What is printed?|int add(int a, int b = 10) { return a + b; }~int main() {~    cout << add(5) << add(5, 1);~}|156|1510|66|Compilation error|Functions|H|add(5) uses the default b = 10 giving 15; add(5, 1) gives 6.
+Which declaration is invalid?||void f(int a = 1, int b);|void f(int a, int b = 2);|void f(int a = 1, int b = 2);|void f(int a);|Functions|H|Once a parameter has a default value, all parameters to its right must also have defaults.
+What is printed?|int m[2][3] = {{1, 2, 3}, {4, 5, 6}};~cout << m[1][0] + m[0][2];|7|5|9|6|Arrays|M|m[1][0] is 4 and m[0][2] is 3.
+What is printed?|int a[3][3] = {{1,2,3},{4,5,6},{7,8,9}};~int s = 0;~for (int i = 0; i < 3; i++) s += a[i][i];~cout << s;|15|45|18|12|Arrays|M|The diagonal elements are 1, 5 and 9.
+What is printed?|int g[4][5];~cout << sizeof(g) / sizeof(int);|20|9|4|5|Arrays|M|A 4 x 5 array holds 20 ints.
+A dynamic 2D array was created with int **m = new int*[3]; and m[i] = new int[4]; for each row. What is the correct way to free it?||delete[] every m[i], then delete[] m|delete[] m only|delete[] m first, then every m[i]|delete m|Dynamic memory|H|Free the rows first; otherwise the row pointers are lost and leak.
+What is printed?|int **m = new int*[2];~for (int i = 0; i < 2; i++) m[i] = new int[2]();~m[1][0] = 8;~cout << *(m[1]) << m[0][1];|80|88|08|Compilation error|Dynamic memory|H|*(m[1]) is m[1][0] = 8; m[0][1] was value-initialized to 0.
+What is printed?|struct Date { int y; };~struct Person { string n; Date b; };~int main() {~    Person p = {"Ann", {2004}};~    p.b.y++;~    cout << p.b.y;~}|2005|2004|Ann|Compilation error|Structs|M|p.b is a nested struct; its member y is incremented.
+What is printed?|struct Item { int q; };~int main() {~    Item it[3] = {{2}, {5}, {3}};~    int t = 0;~    for (int i = 0; i < 3; i++)~        if (it[i].q > t) t = it[i].q;~    cout << t;~}|5|10|3|2|Structs|M|The loop finds the largest q.
+Why must you write (*p).x instead of *p.x when p is a struct pointer?||The dot operator binds tighter than *, so *p.x would apply * to p.x|The dot operator cannot be used with pointers|* has no meaning for structs|*p.x is only valid inside functions|Structs|H|Precedence: p.x is evaluated first; ->  is the shorthand for (*p).x.
+What is printed?|char a[8];~strncpy(a, "abcdef", 3);~a[3] = '\\0';~cout << a;|abc|abcdef|abcd|Compilation error|C-strings|H|strncpy copies 3 characters and does not add the terminator, so we add it manually.
+What is printed?|char s[] = "level";~char *p = strchr(s, 'v');~cout << p;|vel|3|level|v|C-strings|H|strchr returns a pointer to the first 'v'; printing a char* prints from there up to the terminator.
+What is printed?|char s[] = {'h', 'i', '\\0', 'x', 'y'};~cout << strlen(s);|2|5|3|4|C-strings|H|strlen stops counting at the first null character.
+What is printed?|char w[] = "ab";~w[1] = '\\0';~cout << w;|a|ab|b|Nothing|C-strings|M|The string now ends after the first character.
+What is printed?|const char *names[3] = {"Al", "Bob", "Cy"};~cout << names[1][0] << strlen(names[2]);|B2|A2|Bob2|b3|C-strings|H|names[1][0] is 'B'; "Cy" has length 2.
+A double* pointer holds the address 2000 and sizeof(double) is 8 bytes. What address does ptr + 3 hold?||2024|2003|2012|2008|Pointers|M|The pointer advances by 3 * 8 = 24 bytes.
+What is printed?|int a[5] = {5, 10, 15, 20, 25};~int *p = a + 4;~cout << *(p - 2) << p[-1];|1520|2015|1510|1020|Pointers|H|p points to 25; p-2 is 15 and p[-1] is 20.
+What is printed?|int f() {~    return 1;~    cout << "x";~}~int main() { cout << f(); }|1|x1|1x|Compilation error|Functions|M|Statements after return are never executed.
+What is printed?|void g(int a[]) { a[0] = 99; }~int main() {~    int v[2] = {1, 2};~    g(v);~    cout << v[0];~}|99|1|2|Compilation error|Functions|H|An array parameter receives the address of the array, so g modifies the original.
+Which code correctly copies the contents of int array b into int array a (both of size 3)?||for (int i = 0; i < 3; i++) a[i] = b[i];|a = b;|a == b;|&a = &b;|Arrays|M|Arrays cannot be assigned as a whole; elements must be copied one by one.
+What is printed?|string s = "ab";~s.push_back('c');~s = s + "d";~cout << s.size();|4|3|5|abcd|Strings|M|After push_back and +, the string is "abcd" with 4 characters.
+What is printed?|string a = "x", b = "y";~cout << a + b + a;|xyx|xy|x y x|Compilation error|Strings|E|The + operator concatenates std::string objects.
+If the user types: ab cd   (then Enter), what does this print?|string line;~getline(cin, line);~cout << line.length();|5|2|4|6|Strings|M|getline reads the whole line including the space: 5 characters.
+If the user types: ab cd   (then Enter), what does this print?|string s;~cin >> s;~cout << s;|ab|ab cd|cd|Nothing|Strings|M|cin >> stops reading at whitespace.
+Which line fails to compile?|int x = 1, y = 2;~const int *p = &x;~p = &y;~*p = 5;|*p = 5;|const int *p = &x;|p = &y;|int x = 1, y = 2;|Pointers|M|The pointed-to int is const, so it cannot be changed through p.
+What is printed?|int x = 3;~int y = (x++, x * 2);~cout << y;|8|6|4|3|Operators|H|The comma operator evaluates x++ first (x becomes 4), then yields x * 2.
+What is printed?|int a = 2, b = 0;~if (a > 1 @@ b++ > 0) cout << b;~else cout << "no";|0|1|no|Compilation error|Operators|H|a > 1 is true, so b++ is never evaluated (short-circuit); b stays 0.
+What is printed?|int i = 0, c = 0;~while (i < 10) {~    i++;~    if (i % 2) continue;~    c += i;~}~cout << c;|30|25|55|20|Loops|M|Only even values 2+4+6+8+10 are added.
+What is printed?|int i = 5;~int j = i++ + 2;~cout << i << j;|67|77|57|68|Operators|M|j uses the old i (5): j = 7; then i becomes 6.
+What is printed?|int cnt(int a[], int n) {~    int c = 0;~    for (int i = 0; i < n; i++)~        if (a[i] > 3) c++;~    return c;~}~int main() {~    int d[5] = {1, 4, 2, 7, 5};~    cout << cnt(d, 5);~}|3|4|2|5|Functions|M|The values 4, 7 and 5 are greater than 3.
+What is printed?|int f(int a) { return a; }~int f(int a, int b) { return a * b; }~int main() { cout << f(3) + f(3, 4); }|15|7|12|Compilation error|Functions|M|Two overloads differ by parameter count: 3 + 12.
+Why does this code fail to compile?|int f(int x) { return x; }~double f(int x) { return x * 1.5; }|Overloaded functions cannot differ only in their return type|A function cannot return double|The name f is a reserved word|Both functions need default parameters|Functions|H|Overload resolution uses the parameter list, not the return type.
+What is wrong with this code?|int *p = new int[3];~p[0] = 1;~delete p;|Memory from new[] must be freed with delete[]|p[0] cannot be assigned|delete needs the size|Nothing, it is correct|Dynamic memory|M|Use delete[] p for arrays created with new[].`.split("\n").map(l=>{const p=l.split("|");return{t:p[0],code:p[1].replace(/~/g,"\n").replace(/@@/g,"||"),o:p.slice(2,6),topic:p[6],diff:p[7],ex:p[8]}});
+const N3=`Which line includes the library needed for console input and output?||#include <iostream>|#include <cstring>|using namespace std;|return 0;|Basics|E|The preprocessor directive #include <iostream> adds console I/O support.
+What does return 0; at the end of main indicate?||The program terminated successfully|The program ended with an error|The program must run again|The main function is skipped|Basics|E|A returned 0 signals successful termination (return 1 was used for errors).
+Statements written after return in main are called:||Dead (unreachable) code|Global code|Prototype code|Inline code|Basics|M|That code can never be executed.
+What is a variable?||A named location in memory that holds a value|A function that returns a value|A comment in the program|A library name|Variables|E|A name is given to a memory address so the slot can be accessed indirectly.
+Which variable can be accessed from anywhere in the code?||A global variable|A local variable|A variable inside braces { }|A variable declared in main|Variables|E|Global variables are declared outside any function or block.
+What is printed?|int g;~int main() {~    cout << g;~}|0|Garbage value|Compilation error|1|Variables|M|Uninitialized global variables get the default value 0.
+What value does an uninitialized local variable contain?||An unpredictable (garbage) value|0|1|nullptr|Variables|E|Only globals are automatically set to 0.
+What is printed?|int a, b, c;~a = b = c = 4;~cout << a + b + c;|12|4|16|0|Variables|E|The value 4 is assigned to c, then b, then a.
+Which line initializes y using parentheses (direct initialization)?||int y(10);|int y == 10;|int y: 10;|y := 10;|Variables|E|Direct initialization can use parentheses or curly braces.
+What does the unsigned modifier do?||Excludes negative values, allowing a larger range of positive values|Reduces the memory used by the variable|Makes the variable constant|Allows decimal numbers|Types|M|unsigned doubles the positive range because the negative range is removed.
+Which operator calculates the size of a data type or variable at compile time?||sizeof()|size()|typeof()|length()|Types|E|The sizeof() operator returns the size in bytes.
+Which is a valid variable name?||_privateVariable|123variable|$firstName|#itemCount|Variables|E|Names start with a letter or underscore and contain no special characters.
+Which name cannot be used for a variable because it is a reserved keyword?||class|studentAge|totalSum|numStudents|Variables|E|Reserved keywords such as int, class and for must be avoided.
+What is printed?|int r = 5 + 3 * 2 / (4 - 1);~cout << r;|7|3|9|11|Operators|M|(4-1)=3; 3*2=6; 6/3=2; 5+2=7.
+What is printed?|int num = 5;~int r = ++num;~cout << r << num;|66|56|65|55|Operators|M|Prefix increment changes num before its value is used.
+What is printed?|int x = 20;~x /= 4;~x %= 3;~x -= 1;~cout << x;|1|0|2|4|Operators|M|20/4=5, 5%3=2, 2-1=1.
+What does the modulus operator % NOT work with?||Floating-point numbers|Negative literals|Integers|Variables|Operators|E|% cannot be applied to floating-point numbers.
+What type of value do relational operators such as == and < return?||A boolean value (true or false)|An integer count|A character|A string|Operators|E|They compare values and return true or false.
+Which class of operators is NOT covered in this course?||Bitwise operators|Arithmetic operators|Relational operators|Logical operators|Operators|E|The lecture lists bitwise operators as not covered.
+What is printed?|int x = 3;~if (x > 5) cout << "A";~else cout << "B";~cout << "C";|BC|B|C|ABC|Control flow|M|The last statement is not part of else and is always printed.
+Which values can a switch expression evaluate to?||Character or integer values (not floating point)|Any floating-point value|Only strings|Only boolean values|Control flow|E|Floating-point numbers are not allowed in switch.
+In an if / else if / else chain, what is guaranteed?||Exactly one of the blocks is executed|Every block is executed|No block is executed|Only the first and last block run|Control flow|E|Else-if chains guarantee that one of the blocks runs.
+In for (int i = 0; i < 5; i++), when is i++ executed?||After each execution of the loop body|Before the first iteration only|Before the condition is checked|Only once at the end|Loops|M|Statement 3 is the last action of each iteration.
+Where must the initialization of a while loop's control variable be placed?||Outside the loop|Inside the loop body|Inside the condition only|After the loop|Loops|E|Initializations are outside, updates are inside the loop body.
+What is printed?|int arr[5] = {75, 25};~cout << arr[1] + arr[4];|25|100|75|0|Arrays|M|Unlisted elements are initialized to 0.
+What is printed?|int g[3];~int main() {~    cout << g[0] + g[2];~}|0|Garbage value|Compilation error|3|Arrays|M|Global arrays are initialized to zero.
+What is the index of the last element of an array with n elements?||n - 1|n|n + 1|1|Arrays|E|Array indices start from 0.
+Which index changes faster when 2D array elements are accessed in memory order?||The rightmost index|The leftmost index|Both change equally|Neither|Arrays|M|The rightmost index changes faster.
+What is printed?|int a[2][3] = {{1, 2, 3}, {4, 5, 6}};~for (int j = 0; j < 3; j++)~    for (int i = 0; i < 2; i++)~        cout << a[i][j] << " ";|1 4 2 5 3 6|1 2 3 4 5 6|1 4 2 5 6 3|6 5 4 3 2 1|Arrays|H|The outer loop selects columns, so values are read column by column.
+Why is cin.ignore() called after cin >> n and before cin.getline()?||To ignore the new-line character left in the input buffer|To clear the array|To close the input stream|To read the next number|Arrays|M|Otherwise getline would read the leftover new-line as an empty line.
+Which reads a whole line, including spaces, into a char array?||cin.getline(arrayName, MAX_WIDTH);|cin >> arrayName;|cin.ignore();|cout << arrayName;|Arrays|E|The extraction operator >> stops at whitespace.
+A function may return a value of any type except:||An array type or a function type|int|double|char|Functions|M|The lecture states arrays and function types cannot be returned.
+Inlining a function is:||A request to the compiler that it may ignore|A command the compiler must obey|Required for recursive functions|Only possible for void functions|Functions|M|Inlining is only a request, not a command.
+What is the usual size of a pointer?||4 or 8 bytes|Always 1 byte|Always 2 bytes|The size of the value pointed to|Pointers|E|It depends on the OS and CPU architecture.
+Which values can a pointer be initialized to when it points to nothing?||nullptr, NULL or 0|-1|'\\0' only|"null"|Pointers|E|The lecture lists nullptr, NULL and 0.
+What happens if memory obtained with new is never released?||A memory leak occurs|The compiler reports an error|The memory is freed automatically|The program runs faster|Dynamic memory|E|The heap is not managed automatically; the programmer must free it.
+A pointer to a 4-byte int holds the address 0142E840. After ptr = ptr + 2; what address does it hold?||0142E848|0142E842|0142E844|0142E860|Pointers|M|It moves forward by two ints = 8 bytes.
+What is printed?|int x[5] = {1, 2, 3, 4, 5};~cout << &x[3] - &x[1];|2|6|3|8|Pointers|M|The difference of two pointers into the same array counts elements: 3 - 1.
+Why should you never change the original pointer of a dynamic array?||The original address is needed to delete[] the whole array|Pointers cannot be changed|It makes the array static|new[] forbids it|Pointers|M|The lecture warns against changing it.
+What does char *suit[4] = {"Hearts", "Diamonds", "Clubs", "Spades"}; store in the array?||Pointers to the strings|The strings themselves|Only the first letters|The lengths of the strings|Pointers|M|The array stores only pointers to strings.
+After typedef int* IntPtr; IntPtr p1, p2; what are p1 and p2?||Both are pointers to int|Only p1 is a pointer|Both are int variables|Both are arrays|Pointers|M|IntPtr is an alias for int*, so both are pointers.
+Which statement correctly calls a function through the pointer bool (*compare)(int, int);?||(*compare)(a, b);|*compare(a, b);|&compare(a, b);|compare*(a, b);|Pointers|M|Dereference the pointer, or simply call compare(a, b).
+What must be true for all functions stored in an array of function pointers?||Same return type and same parameter types|Same function name|No parameters|They must be inline|Pointers|M|The lecture states they must share return and parameter types.
+How many word tokens does "This is my string" contain when the delimiter is a space?||4|3|5|1|C-strings|E|Tokens are separated by the delimiter: This, is, my, string.
+What does the first argument of later strtok calls have to be?||NULL|The string again|A space|0 as a char|C-strings|M|Subsequent calls continue tokenizing with NULL.
+Which character ends a C-style string?||The null character '\\0'|A space|A new-line|A period|C-strings|E|C-style strings are char arrays ending with '\\0'.
+What does find() return when nothing matches?||string::npos (-1)|0|The string length|true|Strings|M|find and find_first_of return string::npos when there is no match.
+What is printed?|string s = "hello world";~cout << s.find_first_of("ow");|4|6|7|-1|Strings|H|It finds the first character matching ANY listed character: 'o' at index 4.
+What is printed?|string s = "abc";~s.pop_back();~cout << s;|ab|bc|abc|a|Strings|E|pop_back deletes the last character.
+What is printed?|string s = "ac";~s.insert(1, "b");~cout << s;|abc|bac|acb|ab|Strings|E|insert places the text before the character at the given position.
+Why is it better to pass a string by reference to a function?||Assigning or passing by value creates a copy|References make strings uppercase|Strings cannot be passed by value|It avoids using the string library|Strings|M|A string assigned to another string is copied.
+What does begin() return for a container such as a string?||The beginning position (an iterator)|The last element|The length|A copy of the string|Strings|E|begin() returns the beginning position; end() the end position.
+A member function defined outside its struct needs:||The scope operator (::)|The arrow operator (->)|The typedef keyword|The new operator|Structs|M|A separate definition uses the Scope Operator.
+With 2-byte alignment, a struct holds a char and then a short. How large is the hole after the char?||1 byte|2 bytes|0 bytes|4 bytes|Structs|M|The short starts on a 2-byte boundary, leaving a 1-byte hole.
+Member functions of a struct are accessible through:||An instance of the struct only|Any variable|The main function name|The typedef name|Structs|M|They are accessible through an instance only.
+In nested structures, which struct must be declared first?||The inner struct that is used as a member|The outer struct|Order does not matter|The one with fewer members|Structs|M|The order of declarations matters.
+What is a template function used for?||Working with generic types, avoiding code repeated for different data types|Allocating heap memory|Defining struct alignment|Reading input lines|Structs|M|The data type T is set at compile time.`.split("\n").map(l=>{const p=l.split("|");return{t:p[0],code:p[1].replace(/~/g,"\n"),o:p.slice(2,6),topic:p[6],diff:p[7],ex:p[8]}});
+// Older questions kept only if the lectures cover everything they use
+const OUT=/strncpy|strchr|strcat|short-circuit|b\+\+|x \*= 2|\[-1\]|only in their return|\(\*p\)\.x|size\(\)|user types|cin >> s|new int\[2\]\(\)|back\(\) return|cannot differ|if \(x = 5\)|\*p = 2;~delete p;|const int c = 5|copies the contents of int array|x\+\+, x|\(7 > 3\) \+ \(2 > 5\)/;
+const KEEP=C.filter(q=>/^What does ptr|^How do you declare a struct|^Which statement is true about a const/.test(q.t));
+const OLDOK=N.concat(N2,KEEP).filter(q=>!OUT.test((q.t+"|"+q.code).replace(/\n/g,"~")));
+const POOL=(()=>{const r=rng(77);return (()=>{const w=q=>/Control flow|Dynamic memory|Basics|Variables|Types/.test(q.topic)?0:1;return shuf(N3,r).sort((a,b)=>w(a)-w(b)).slice(0,40)})().concat(shuf(OLDOK,r).slice(0,40))})();
+function build(t){const r=rng(900+t*13),src=shuf(POOL,rng(5)).slice(t*40,t*40+40);
+ return shuf(src,r).map((q,i)=>{const c=q.o[0],o=shuf(q.o,r);return{...q,o,a:o.indexOf(c),id:t+"-"+i}})}
+const kq=q=>q.t+"|"+q.code;
+const ALLQ=[...new Map(N3.concat(OLDOK).map(q=>[kq(q),q])).values()];
+const SPARE=ALLQ.filter(q=>!POOL.includes(q));
+const prep=(a,r)=>a.map((q,i)=>{const c=q.o[0],o=shuf(q.o,r);return{...q,o,a:o.indexOf(c),id:"x"+i}});
+const TESTS=[0,1].map(t=>({n:t+1,title:"Practice Test "+(t+1),qs:build(t)}));
+TESTS.push({n:3,title:"Practice Test 3",qs:prep(shuf(SPARE,rng(9)).slice(0,40),rng(10))});
+const ORIG=`Which declaration creates an array of 4 pointers to char?|char (*a)(4);|char &a[4];|char *a[4];|char a[4];|2|Pointers
+What is a pointer?|A function that returns an address|A constant value|A variable that holds a memory address|A special kind of array|2|Pointers
+What is the output of the code: int x = 5; cout << x++;|Compilation error|4|5|6|2|Operators
+What is the output of the code: int x = 3; if (x > 3) cout << "A"; else cout << "B";|Nothing|B|A|AB|1|Control flow
+What is the output of the code: void twice(int *p) { *p = *p * 2; } int main() { int a = 6; twice(&a); cout << a; }|6|3|The address of a|12|3|Pointers
+What is the output of the code: string s = "banana"; cout << s.find('n');|2|4|1|3|0|Strings
+Given: int x = 1, y = 2; int * const p = &x; Which line causes a compilation error?|p = &y;|*p = 5;|x = 5;|cout << *p;|0|Pointers
+What does the break statement do inside a loop?|Pauses the loop for one second|Terminates the program|Jumps to the next iteration|Immediately exits the loop|3|Loops
+What is the output of the code: int a = 10; a += 5; a *= 2; cout << a;|25|20|15|30|3|Operators
+What is the output of the code: int x = 15; if (x > 20) cout << "A"; else if (x > 10) cout << "B"; else cout << "C";|A|B|BC|C|1|Control flow
+Which expression causes a compilation error?|10.5 % 3|10.5 / 3|10 % 3|10 / 3|0|Operators
+What is the output of the code: int x = 5; int *p = &x; int **pp = &p; **pp = 9; cout << x;|9|The address of x|5|14|0|Pointers
+How many asterisks will the code print: for (int i = 0; i < 3; i++) for (int j = 0; j < 2; j++) cout << "*";|2|6|3|5|1|Loops
+What is the output of the code: int add(int a, int b) { return a + b; } int main() { int r = add(3, 5); cout << r; }|8|15|35|2|0|Functions
+What is the output of the code: string s = "Hello"; s.insert(0, "Oh "); cout << s;|Hello Oh|HelloOh|Oh Hello|Oh|2|Strings
+Which function reads a whole line, including spaces, into a string?|scanf(s)|cin >> s|read(s)|getline(cin, s)|3|Strings
+What is the output of the code: int x = 5; int *p = &x; int **pp = &p; cout << **pp;|The address of x|The address of p|5|Compilation error|2|Pointers
+What is a pointer to pointer?|A pointer to a function|A pointer that holds two addresses|A pointer to an array|A pointer that holds the address of another pointer|3|Pointers
+Which condition correctly checks that an integer n is even?|n / 2 == 0|n % 2 == 1|n % 2 == 0|n == 2|2|Operators
+What is the output of the code: char s[] = "Hello"; cout << strlen(s);|4|6|Hello|5|3|C-strings
+What does the continue statement do inside a loop?|Repeats the current iteration|Terminates the program|Skips the rest of the loop body and moves to the next iteration|Exits the loop|2|Loops
+What is the output of the code: for (int i = 10; i > 0; i -= 2) cout << i << " ";|8 6 4 2|10 8 6 4|10 8 6 4 2|10 8 6 4 2 0|2|Loops
+What is the output of the code: int a[5]; for (int i = 0; i < 5; i++) a[i] = i * i; cout << a[3] + a[4];|41|16|7|25|3|Arrays
+What is the output of the code: struct Rect { int w, h; int area() { return w * h; } }; int main() { Rect r = {4, 5}; cout << r.area(); }|9|20|Compilation error|45|1|Structs
+Why may a structure not occupy consecutive bytes in memory?|Because all members are pointers|Because members are stored in reverse order|Because structures are stored on disk|Because of member alignment, which may create "holes" between members|3|Structs
+Which operator is used to access a structure member through a pointer?|::|*|->|. (dot)|2|Structs
+What is the output of the code: int a[4] = {2, 3, 4, 6}; int s = 0; for (int i = 0; i < 4; i++) s += a[i]; cout << s / 4;|3|3.75|15|4|0|Arrays
+What is the output of the code: int n = 123, s = 0; while (n > 0) { s += n % 10; n /= 10; } cout << s;|3|123|6|321|2|Loops
+What is the output of the code: int square(int x) { return x * x; } int main() { cout << square(4); }|8|4|16|44|2|Functions
+What is the output of the code: struct Book { string title; int pages; }; int main() { Book b = {"C++", 300}; cout << b.pages; }|300|0|C++|Compilation error|0|Structs
+What does the notation for (;;) { ... } mean?|The loop will not execute at all|Infinite loop|The loop will execute once|Compilation error|1|Loops|*
+What is the output of the code: struct Car { string brand; }; struct Driver { string name; Car car; }; int main() { Driver d = {"Tom", {"BMW"}}; cout << d.car.brand; }|car|BMW|Compilation error|Tom|1|Structs
+What is the output of the code: for (int i = 0; i < 3; i++); cout << "X";|X|XX|Nothing|XXX|0|Loops
+What is the typedef specifier used for?|Creating a new variable|Allocating memory|Giving a new name (alias) to an existing type|Declaring a constant|2|Types
+What is the output of the code: int x = 3.99; cout << x;|3.99|Compilation error|4|3|3|Types|*
+Which line is a correct function prototype?|int max(int, int);|int max(int a, b);|int max(int a, int b) { }|max(int a, int b);|0|Functions
+Which operator is used to access a member of a structure variable?|&|::|->|. (dot)|3|Structs
+What is the output of the code: cout << 7.0 / 2;|3|3.5|3.0|4|1|Operators
+How do you correctly free memory allocated as int *arr = new int[5]; ?|delete[] arr;|delete arr[5];|delete arr;|free arr;|0|Dynamic memory
+What is function overloading?|A function that calls itself|A function without a return type|Several functions with the same name but different parameters|A function with too many parameters|2|Functions`.split("\n").map(l=>{const p=l.split("|");return{orig:1,t:p[0],code:"",o:p.slice(1,5),a:+p[5],topic:p[6],diff:"M",ex:p[7]?"Not stated explicitly in the lectures; the answer follows standard C++ behaviour. The mark visible in your screenshot is not an answer key.":"Answer checked against the lectures."}});
+TESTS.push({n:4,title:"Original Exam (verbatim)",orig:1,qs:ORIG});
+const LEC={"Basics":"Lecture 2 (Part I): First program","Variables":"Lecture 2 (Part I): Variables, declaration, initialization, identifiers","Types":"Lecture 2 (Part I): Data types and modifiers; Lecture 9: typedef","Operators":"Lecture 2 (Part II): Operators","Control flow":"Lecture 3: Selection statements (if, switch, ternary)","Loops":"Lecture 4: Iteration statements","Arrays":"Lecture 5: Arrays; Lecture 6: 2D arrays","Functions":"Lecture 7: Functions","Pointers":"Lectures 8-9: Pointers, pointer to pointer, function pointers","Dynamic memory":"Lecture 8: Dynamic memory (new / delete)","Strings":"Lecture 11: Strings (std::string)","C-strings":"Lecture 9: C-style strings and <cstring>; Lecture 5: null-terminated strings","Structs":"Lecture 10: Structs"};
+function analysis(S){const arr=Object.entries(S.tp).map(([k,v])=>[k,Math.round(v[0]/v[1]*100),v[0],v[1]]).sort((a,b)=>b[1]-a[1]);
+ let weak=arr.filter(x=>x[1]<70).reverse().slice(0,3);if(!weak.length&&arr.length&&arr[arr.length-1][1]<100)weak=[arr[arr.length-1]];
+ const strong=arr.filter(x=>x[1]>=80&&!weak.includes(x)).slice(0,3);S.weak=weak.map(x=>x[0]);
+ const miss=k=>S.qs.map((q,i)=>({q,a:S.ans[i]})).filter(x=>x.q.topic==k&&x.a!==x.q.a).slice(0,2);
+ const f=x=>x.map(y=>y[0]+" "+y[1]+"%").join(", ");
+ return `<h3 style="margin-top:20px">Topic breakdown</h3><div class="card">${arr.map(([k,p,c,n])=>`<div style="margin:8px 0"><div class="row" style="margin:0"><span>${k}</span><span class="sp mute">${c}/${n} · ${p}%</span></div><div class="bar"><i style="width:${p}%;background:${p<70?"var(--bad)":"var(--acc)"}"></i></div></div>`).join("")}</div>
+<div class="grid" style="margin-top:14px"><div class="card"><b>Strongest topics</b><br>${f(strong)||"–"}</div><div class="card"><b>Weakest topics</b><br>${f(weak)||"None – well done"}</div></div>
+${weak.length?`<h3 style="margin-top:20px">What to review</h3><div class="card">${weak.map(([k,p,c,n])=>`<p><b>${k}</b> (${c}/${n} correct) – review ${LEC[k]}.<br><span class="mute">${miss(k).map(m=>"Missed: “"+esc(m.q.t.slice(0,70))+"” → "+inl(m.q.ex)).join("<br>")}</span></p>`).join("")}<button class="p" onclick="startRev(S.weak)">Start a 12-question revision quiz</button></div>`:""}`}
+function mkRev(topics,used,skip){const r=rng(Date.now()%100000);let c=ALLQ.filter(q=>topics.includes(q.topic)&&!skip.has(kq(q))&&!used.has(kq(q)));
+ if(c.length<12)c=c.concat(ALLQ.filter(q=>topics.includes(q.topic)&&!skip.has(kq(q))&&used.has(kq(q))));
+ c=shuf(c,r).slice(0,12);if(c.length<10)c=c.concat(shuf(ALLQ.filter(q=>!topics.includes(q.topic)&&!skip.has(kq(q))),r).slice(0,10-c.length));
+ return shuf(c,r).map(q=>{const k=q.o[0],o=shuf(q.o,r);return{...q,o,a:o.indexOf(k)}})}
+function startRev(topics,skip,used){skip=skip||new Set(S.qs.map(kq));used=used||new Set();const qs=mkRev(topics,used,skip);qs.forEach(q=>used.add(kq(q)));S={v:"quiz",n:0,rev:1,mode:"practice",qs,ans:Array(qs.length).fill(null),i:0,chk:{},used,topics,skip};render()}
+function again(){startRev(S.topics,S.skip,S.used)}
+function theme(t,sv){document.documentElement.dataset.theme=t;const b=document.getElementById("th");b.textContent=t=="dark"?"☀ Light":"☾ Dark";if(sv)try{localStorage.setItem("pep_theme",t)}catch(e){}}
+(()=>{let t=null;try{t=localStorage.getItem("pep_theme")}catch(e){}if(!t)t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";theme(t,false);document.getElementById("th").onclick=()=>theme(document.documentElement.dataset.theme=="dark"?"light":"dark",true)})();
+// ---------- STATE / STORAGE ----------
+const KEY="pep_results_v1";
+const load=()=>{try{return JSON.parse(localStorage.getItem(KEY))||[]}catch(e){return[]}};
+const save=a=>{try{localStorage.setItem(KEY,JSON.stringify(a))}catch(e){}};
+let S={v:"home"};const $a=document.getElementById("app");
+const esc=s=>String(s).replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+const L="abcde";
+// ---- code display helpers (presentation only; question data is never modified)
+const KW=new Set("int double float char bool void if else for while do switch case default break continue return struct typedef new delete const unsigned signed short long using namespace true false nullptr NULL string sizeof cout cin endl".split(" "));
+function hl(c){return String(c).replace(/(\/\/[^\n]*|\/\*[\s\S]*?\*\/)|("(?:\\.|[^"\\\n])*"|'(?:\\.|[^'\\\n])*')|(#\s*include[^\n]*)|(\b\d+(?:\.\d+)?f?\b)|([A-Za-z_]\w*)|(<<|>>|->|::|\+\+|--|&&|\|\||[<>=!+\-*\/%&|^]=?|[?:])|([\s\S])/g,
+ (m,cm,st,pp,nu,id,op)=>cm?`<span class="hc">${esc(m)}</span>`:st?`<span class="hs">${esc(m)}</span>`:pp?`<span class="hp">${esc(m)}</span>`:nu?`<span class="hn">${m}</span>`:id?(KW.has(m)?`<span class="hk">${m}</span>`:m):op?`<span class="ho">${esc(m)}</span>`:esc(m))}
+// re-flow a one-line snippet into indented lines (used only for the verbatim exam, whose code is stored on one line)
+function fmt(src){let out=[],cur="",ind=0,par=0,ini=0,q=null,prev="";
+ const flush=()=>{if(cur.trim())out.push("    ".repeat(ind)+cur.trim());cur=""};
+ for(let i=0;i<src.length;i++){const ch=src[i];
+  if(q){cur+=ch;if(ch=="\\"){cur+=src[++i]||""}else if(ch==q)q=null;continue}
+  if(ch=='"'||ch=="'"){q=ch;cur+=ch;continue}
+  if(ch=="(")par++;if(ch==")")par--;
+  if(ch=="{"){const nx=src.slice(i+1).trim()[0];if(ini>0||prev=="="){ini++;cur+=ch}else{cur=cur.replace(/\s+$/,"")+" {";flush();ind++}}
+  else if(ch=="}"){if(ini>0){ini--;cur+=ch}else{flush();ind=Math.max(0,ind-1);cur="}";if(src.slice(i+1).trim()[0]==";"){cur+=";";i=src.indexOf(";",i)}flush()}}
+  else if(ch==";"&&par==0&&ini==0){cur+=";";flush()}
+  else cur+=ch;
+  if(ch.trim())prev=ch}
+ flush();return out.join("\n")}
+function cblock(code){return code?`<div class="cb"><div class="cbh"><span>C++</span><button type="button" class="cpy" onclick="copyCode(this)">Copy code</button></div><pre tabindex="0"><code>${hl(code)}</code></pre></div>`:""}
+function copyCode(b){const t=b.closest(".cb").querySelector("code").textContent;const done=()=>{b.textContent="Copied!";setTimeout(()=>b.textContent="Copy code",1500)};
+ const fb=()=>{const a=document.createElement("textarea");a.value=t;document.body.appendChild(a);a.select();try{document.execCommand("copy")}catch(e){}a.remove();done()};
+ if(navigator.clipboard&&window.isSecureContext)navigator.clipboard.writeText(t).then(done,fb);else fb()}
+const IC=/\b\w+::\w+|\b\w+\([^()]*\)|\b\w+(?:\[[^\]]*\])+|\b\w+->\w+|'\\0'|\bnullptr\b|\bNULL\b/g;
+function inl(s){s=String(s);let o="",l=0;s.replace(IC,(m,i)=>{o+=esc(s.slice(l,i))+`<code class="ic">${hl(m)}</code>`;l=i+m.length;return m});return o+esc(s.slice(l))}
+function isCode(o){return /;\s*$/.test(o)||/^(?:->|::|\*|&|\. \(dot\))$/.test(o)||/^[\w.\[\]()*&]+(?:\s+(?:==|<<|>>|&&|[%\/*+\-<>=])\s+[\w.\[\]()*&]+)+$/.test(o)}
+const opt=o=>isCode(o)?`<code class="ic">${hl(o)}</code>`:inl(o);
+function parts(q){if(q.code)return{pre:q.t,code:q.code,post:""};
+ if(q.orig){let m=q.t.match(/^(What is the output of the code:|How many asterisks will the code print:)\s*(.+)$/);if(m)return{pre:m[1],code:fmt(m[2]),post:""};
+  m=q.t.match(/^(Given:)\s*(.+;)\s*(Which .+)$/);if(m)return{pre:m[1],code:fmt(m[2]),post:m[3]}}
+ return{pre:q.t,code:"",post:""}}
+
+function ask(m,y){const d=document.createElement("div");d.style.cssText="position:fixed;inset:0;background:#0008;display:grid;place-items:center;z-index:9";d.innerHTML=`<div class="card" style="max-width:380px"><p>${m}</p><div class="row"><button class="s" id="mn">Cancel</button><button class="p sp" id="my">Confirm</button></div></div>`;document.body.appendChild(d);d.querySelector("#mn").onclick=()=>d.remove();d.querySelector("#my").onclick=()=>{d.remove();y()}}
+function go(v){S.v=v;render();document.querySelectorAll("nav button").forEach(b=>b.classList.toggle("on",b.dataset.v==v))}
+document.querySelectorAll("nav button").forEach(b=>b.onclick=()=>{const v=b.dataset.v;if(S.v=="quiz")ask("Leave this test? Your answers will be lost.",()=>go(v));else go(v)});
+function stats(){const R=load(),n=new Set(R.map(r=>r.test)).size,sc=R.map(r=>r.score/r.total*100);return{R,n,avg:sc.length?Math.round(sc.reduce((a,b)=>a+b)/sc.length):null,best:sc.length?Math.round(Math.max(...sc)):null}}
+function start(n,mode){const T=TESTS[n-1];S={v:"quiz",n,mode,qs:T.qs,ans:Array(T.qs.length).fill(null),i:0,chk:{}};render()}
+function finish(){if(S.done)return;S.done=true;const q=S.qs;let c=0,w=0,u=0;const tp={};q.forEach((x,i)=>{const a=S.ans[i];tp[x.topic]=tp[x.topic]||[0,0];tp[x.topic][1]++;if(a===null)u++;else if(a===x.a){c++;tp[x.topic][0]++}else w++});
+ const R=load();if(!S.rev)R.push({test:S.n,mode:S.mode,score:c,total:q.length,date:new Date().toISOString(),tp});if(!S.rev)save(R);S={...S,v:"res",c,w,u,tp,filter:"all"};render()}
+// ---------- VIEWS ----------
+function render(){window.scrollTo(0,0);({home,tests,prog,quiz,res}[S.v]||home)()}
+function home(){const s=stats();$a.innerHTML=`<h1>Programming Exam Preparation</h1><p class="mute" style="max-width:60ch">Practice C++ multiple-choice questions on vectors, strings, structs, pointers, dynamic memory, functions and loops — the topics from your sample exams. Use Exam Mode to simulate the real test, or Practice Mode to learn as you go.</p>
+<div class="grid" style="margin:18px 0"><div class="card"><div class="stat">${TESTS.length}</div><div class="mute">practice tests</div></div><div class="card"><div class="stat">${TESTS.reduce((a,t)=>a+t.qs.length,0)}</div><div class="mute">questions</div></div><div class="card"><div class="stat">${s.n}/${TESTS.length}</div><div class="mute">tests completed</div></div><div class="card"><div class="stat">${s.avg===null?"–":s.avg+"%"}</div><div class="mute">average score</div></div><div class="card"><div class="stat">${s.best===null?"–":s.best+"%"}</div><div class="mute">best score</div></div></div>
+<button class="p" onclick="go('tests')">Start practicing</button>`}
+function tests(){const R=load();$a.innerHTML=`<h2>Practice tests</h2><div class="grid">${TESTS.map(t=>{const rs=R.filter(r=>r.test==t.n),b=rs.length?Math.max(...rs.map(r=>r.score)):null;return`<div class="card"><h3>${t.title}</h3><div class="mute">${t.qs.length} questions${t.orig?" · exact original wording and order":""}</div><p class="mute">${b===null?"Not attempted yet":`Completed ${rs.length}× · best ${b}/${t.qs.length}`}</p><div class="row"><button class="p" onclick="start(${t.n},'exam')">Exam mode</button><button class="s" onclick="start(${t.n},'practice')">Practice mode</button></div></div>`}).join("")}</div>`}
+function quiz(){const q=S.qs[S.i],P=parts(q),i=S.i,pm=S.mode=="practice",ck=pm&&S.chk[i],a=S.ans[i];
+ $a.innerHTML=`<div class="row" style="margin:0 0 10px"><b>${S.rev?"Revision quiz":S.n==4?"Original exam":"Test "+S.n} · ${pm?"Practice":"Exam"} mode</b><span class="sp mute">Question ${i+1} of ${S.qs.length} · ${S.ans.filter(x=>x!==null).length} answered</span></div><div class="bar" style="margin-bottom:14px"><i style="width:${(i+1)/S.qs.length*100}%"></i></div>
+<div class="nav">${S.qs.map((_,k)=>`<button class="${S.ans[k]!==null?"done":""} ${k==i?"cur":""}" onclick="S.i=${k};render()">${k+1}</button>`).join("")}</div>
+<div class="card"><span class="tag">${q.topic}</span><span class="tag">${{E:"Easy",M:"Medium",H:"Hard"}[q.diff]}</span><h3 style="margin-top:10px">${inl(P.pre)}</h3>${cblock(P.code)}${P.post?`<p style="margin:8px 0 0">${inl(P.post)}</p>`:""}
+${q.o.map((o,k)=>`<button class="opt ${a===k?"sel":""} ${ck?(k==q.a?"ok":a===k?"no":""):""}" onclick="pick(${k})"><b>${L[k]}.</b> ${opt(o)}</button>`).join("")}
+${ck?`<div class="ex"><b>${a===q.a?"Correct.":a===null?"No answer selected.":"Incorrect."}</b> Answer: ${L[q.a]}. ${inl(q.ex)}</div>`:""}
+<div class="row"><button class="s" ${i?"":"disabled"} onclick="S.i--;render()">Previous</button><button class="s" ${i<S.qs.length-1?"":"disabled"} onclick="S.i++;render()">Next</button>${pm?`<button class="s" onclick="S.chk[${i}]=1;render()">Check answer</button>`:""}${a!==null?`<button class="s" onclick="S.ans[${i}]=null;render()">Clear</button>`:""}<button class="p sp" onclick="submit()">Submit test</button></div></div>`}
+function pick(k){if(S.mode=="practice"&&S.chk[S.i])return;S.ans[S.i]=k;render()}
+function submit(){if(S.v!="quiz"||S.done)return;const u=S.ans.filter(x=>x===null).length;ask(u?`${u} question(s) are unanswered. Submit anyway?`:"Submit your test?",()=>{if(S.v=="quiz"&&!S.done)finish()})}
+function res(){const p=Math.round(S.c/S.qs.length*100),qs=S.qs;
+ const list=qs.map((q,i)=>({q,i,a:S.ans[i]})).filter(x=>S.filter=="all"||x.a!==x.q.a);
+ $a.innerHTML=`<h2>${S.rev?"Revision quiz":S.n==4?"Original exam":"Test "+S.n} results</h2><div class="card row" style="gap:24px"><div class="ring" style="background:conic-gradient(var(--acc) ${p*3.6}deg,var(--line) 0)"><span>${p}%</span></div><div><div class="stat">${S.c} / ${S.qs.length}</div><div class="mute">${S.c} correct · ${S.w} incorrect · ${S.u} unanswered</div></div></div>
+${analysis(S)}<div class="row">${S.rev?`<button class="p" onclick="again()">Practise these topics again</button>`:`<button class="p" onclick="start(${S.n},'${S.mode}')">Retake test</button>`}<button class="s" onclick="S.filter=S.filter=='all'?'bad':'all';render()">${S.filter=="all"?"Review mistakes":"Show all questions"}</button><button class="s" onclick="go('home')">Return to dashboard</button></div>
+${list.length?"":`<p class="card" style="margin-top:14px">No mistakes — every question was answered correctly.</p>`}
+${list.map(({q,i,a},_,__,P=parts(q))=>`<div class="card rq ${a===null?"u":a===q.a?"r":"w"}"><span class="tag">${q.topic}</span><b>${i+1}. ${inl(P.pre)}</b>${cblock(P.code)}${P.post?`<p style="margin:8px 0 0">${inl(P.post)}</p>`:""}<div>Your answer: ${a===null?"<i>not answered</i>":L[a]+". "+opt(q.o[a])}</div><div>Correct answer: <b>${L[q.a]}. ${opt(q.o[q.a])}</b></div><div class="ex">${inl(q.ex)}</div></div>`).join("")}`}
+function prog(){const R=load(),tp={};R.forEach(r=>Object.entries(r.tp).forEach(([k,v])=>{tp[k]=tp[k]||[0,0];tp[k][0]+=v[0];tp[k][1]+=v[1]}));
+ const T=Object.entries(tp).map(([k,v])=>[k,Math.round(v[0]/v[1]*100),v[1]]).sort((a,b)=>a[1]-b[1]),s=stats();
+ $a.innerHTML=`<h2>Progress</h2>${R.length?`<div class="grid"><div class="card"><div class="stat">${s.n}</div><div class="mute">different tests completed</div></div><div class="card"><div class="stat">${s.avg}%</div><div class="mute">average</div></div><div class="card"><div class="stat">${s.best}%</div><div class="mute">best</div></div></div>
+<h3 style="margin-top:22px">Performance by topic</h3><div class="card">${T.map(([k,p,n])=>`<div style="margin:8px 0"><div class="row" style="margin:0"><span>${k}${p<60?` <span class="tag" style="background:var(--badl);color:var(--bad)">needs practice</span>`:""}</span><span class="sp mute">${p}% of ${n}</span></div><div class="bar"><i style="width:${p}%;background:${p<60?"var(--bad)":"var(--acc)"}"></i></div></div>`).join("")}</div>
+<h3 style="margin-top:22px">Previous attempts</h3><div class="card">${R.slice().reverse().map(r=>`<div class="row" style="margin:4px 0"><span>Test ${r.test} · ${r.mode}</span><span class="mute">${new Date(r.date).toLocaleString()}</span><b class="sp">${r.score}/${r.total||40}</b></div>`).join("")}</div>
+<div class="row"><button class="s" onclick="ask('Delete all saved results?',()=>{save([]);prog()})">Reset progress</button></div>`:`<div class="card">No results yet. Finish a test and your scores and weak topics will appear here.<div class="row"><button class="p" onclick="go('tests')">Choose a test</button></div></div>`}`}
+go("home");
+</script></body></html>
